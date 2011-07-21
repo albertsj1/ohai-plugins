@@ -1,6 +1,6 @@
 provides "linux/vserver"
 require_plugin "virtualization"
-if virtualization[:system] = "linux-vserver"
+if virtualization[:system] == "linux-vserver"
   virtualization[:vserver] = Mash.new
   vserver_info = from("vserver-info - SYSINFO")
   vserver_stat = from("vserver-stat")
