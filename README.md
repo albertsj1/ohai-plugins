@@ -11,6 +11,7 @@ This plugin provides information such as: versions, configuration dirs, running 
 
 **Example:**
 
+  "virtualization": {
     "system": "linux-vserver",
     "role": "host",
     "vserver": {
@@ -58,3 +59,60 @@ This plugin provides information such as: versions, configuration dirs, running 
       "guest_cpuset_total": "0-7,8-15"
     }
 
+**kvm_extensions.rb**
+
+Provides additional information for [KVM](http://linux-kvm.org) hosts similiar to my VServer Ohai plugin.
+
+**Example:**
+
+    "virtualization": {
+      "system": "kvm",
+      "role": "host",
+      "kvm": {
+        "guests": {
+          "dc02vg0226na": {
+            "id": "1",
+            "state": "running",
+            "Name": "dc02vg0226na",
+            "UUID": "ee29f7d2-fe39-1468-01a7-bb4b3adbab1f",
+            "OS Type": "hvm",
+            "State": "running",
+            "CPU(s)": "4",
+            "CPU time": "47243.5s",
+            "Max memory": "8388608 kB",
+            "Used memory": "8388608 kB",
+            "Persistent": "yes",
+            "Autostart": "enable"
+          },
+          "dc02vg0108na": {
+            "id": "2",
+            "state": "running",
+            "Name": "dc02vg0108na",
+            "UUID": "136a0510-d3f3-6b0a-23e9-2e7b37592a16",
+            "OS Type": "hvm",
+            "State": "running",
+            "CPU(s)": "4",
+            "CPU time": "123711.2s",
+            "Max memory": "8388608 kB",
+            "Used memory": "8388608 kB",
+            "Persistent": "yes",
+            "Autostart": "enable"
+          },
+          "dc02vg0228na": {
+            "id": "3",
+            "state": "running",
+            "Name": "dc02vg0228na",
+            "UUID": "42537746-e7f5-64f9-58eb-afd33940c036",
+            "OS Type": "hvm",
+            "State": "running",
+            "CPU(s)": "4",
+            "CPU time": "56315.5s",
+            "Max memory": "8388608 kB",
+            "Used memory": "8388608 kB",
+            "Persistent": "yes",
+            "Autostart": "enable"
+          }
+        },
+        "guest_maxmemory_total": "25165824 kB",
+        "guest_usedmemory_total": "25165824 kB"
+      }
