@@ -17,7 +17,12 @@ if not virtualization.nil? and virtualization[:system] == 'kvm'
       virtualization[:kvm][:guests][name][:id] = id.strip
       virtualization[:kvm][:guests][name][:state] = state.strip
       # Let's parse dominfo for more guest information
-      %x{virsh dominfo #{id} | grep -v 'Id:'}.each_line do |l|
+      if "#{id}" == "-"
+        domains = %x{virsh dominfo #{name} | grep -v 'Id:'}
+      else
+        domains = %x{virsh dominfo #{id} | grep -v 'Id:'}
+      end
+       domains.each_line do |l|
         k, v = l.split(":")
         virtualization[:kvm][:guests][name][k.strip] = v.strip unless v.nil?
         case k.strip
@@ -37,4 +42,3 @@ if not virtualization.nil? and virtualization[:system] == 'kvm'
 
   end
 end
-
