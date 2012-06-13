@@ -44,6 +44,11 @@ if not virtualization.nil? and virtualization[:system] == 'kvm'
       k,v = detail.split ":"
       virtualization[:kvm][:hardware][k.strip] = v.strip unless v.nil?
     end
+    %x{virsh freecell}.each_line do |detail|
+      k,v = detail.split ":"
+      virtualization[:kvm][:hardware][:freecell] = v.strip unless v.nil?
+    end
+
   elsif virtualization[:role] == 'guest'
 
 
