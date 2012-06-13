@@ -22,7 +22,7 @@ if not virtualization.nil? and virtualization[:system] == 'kvm'
       else
         domains = %x{virsh dominfo #{id} | grep -v 'Id:'}
       end
-       domains.each_line do |l|
+      domains.each_line do |l|
         k, v = l.split(":")
         virtualization[:kvm][:guests][name][k.strip] = v.strip unless v.nil?
         case k.strip
