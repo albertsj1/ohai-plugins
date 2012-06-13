@@ -37,6 +37,13 @@ if not virtualization.nil? and virtualization[:system] == 'kvm'
       virtualization[:kvm][:guest_maxmemory_total] = guest_maxmemory_total.to_s + " kB"
       virtualization[:kvm][:guest_usedmemory_total] = guest_usedmemory_total.to_s + " kB"
     end
+
+    # gather hardware details for the host
+    virtualization[:kvm][:hardware] = Mash.new
+    %x{virsh nodeinfo}.each_line do |detail|
+      k,v = detail.split ":"
+      virtualization[:kvm][:hardware][k.strip] = v.strip unless v.nil?
+    end
   elsif virtualization[:role] == 'guest'
 
 
