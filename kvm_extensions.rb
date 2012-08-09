@@ -34,6 +34,7 @@ if not virtualization.nil? and virtualization[:system] == 'kvm'
           guest_usedmemory_total += v.strip.to_i
         end
       end
+      virtualization[:kvm][:guest_cpu_total] = guest_cpu_total
       virtualization[:kvm][:guest_maxmemory_total] = guest_maxmemory_total.to_s + " kB"
       virtualization[:kvm][:guest_usedmemory_total] = guest_usedmemory_total.to_s + " kB"
     end
