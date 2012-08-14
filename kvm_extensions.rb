@@ -24,7 +24,8 @@ if not virtualization.nil? and virtualization[:system] == 'kvm'
       end
        domains.each_line do |l|
         k, v = l.split(":")
-        virtualization[:kvm][:guests][name][k.strip] = v.strip unless v.nil?
+        virtualization[:kvm][:guests][name][k.strip] = v.strip unless v.nil? 
+        virtualization[:kvm][:guests][name][:vncdisplay] = sprintf("59%02d", %x(virsh vncdisplay #{id}).strip.gsub(/(\d+.\d+.\d+.\d+)?:/, '')).to_i unless "#{id}" == "-"
         case k.strip
         when 'CPU(s)'
           guest_cpu_total += v.strip.to_i
